@@ -40,21 +40,37 @@ h1 {
   margin: 40px auto;
   padding: 20px;
 }
+button {
+  background-color: white;
+  border: 0.5px;
+  border-radius: 2px;
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: lime;
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
+}
 
 /* blogs previews */
 
 .blog-previews {
   padding: 10px, 16px;
   margin: 20px 0;
-  border-bottom: 1px solid #f1356d;
+  color: #000000;
+  border-bottom: 1px #959595;
 }
 
 .blog-previews:hover {
   box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
+
+  background-color: #71bfea;
+  padding: 20px;
+  border-radius: 5px;
 }
 
 .blog-previews h2 {
   font-size: 20px;
-  color: #f1356d;
+  color: #620cf6;
   margin-bottom: 8px;
 }
