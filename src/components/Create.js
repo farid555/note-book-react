@@ -1,18 +1,31 @@
 import React from "react";
-// import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const Create = () => {
-  //   const navigator = Navigate();
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [author, setAuthor] = useState("");
+  const [ispending, setIspending] = useState(false);
+  const navigator = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const blog = { title, body, author };
     console.log(blog);
+    setIspending(true);
+
+    fetch("http://localhost:8000/blogs", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(blog),
+    }).then(() => {
+      console.log("new blog created");
+      setIspending(false);
+      navigator("/");
+    });
   };
+
   return (
     <div className="create">
       <h2>Add new blog</h2>
@@ -35,7 +48,8 @@ const Create = () => {
           <option value="mario">Mario</option>
           <option value="yoshi">Yoshi</option>
         </select>
-        <button> Add Blog</button>
+        {!ispending && <button> Add Blog</button>}
+        {ispending && <button disabled> Adding blog...</button>}
         {console.log(title)}
         {console.log(body)}
       </form>
