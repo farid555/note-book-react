@@ -3,6 +3,9 @@
   margin: 0px;
   font-family: "Noto Serif Display", serif;
 }
+h1 {
+  margin-bottom: 10px;
+}
 
 .navbar {
   padding: 20px;
@@ -24,17 +27,34 @@
   margin-left: 16px;
   text-decoration: none;
   padding: 6px;
-  color: wheat;
-  background-color: #f1356d;
+  color: black;
   border-radius: 4px;
 }
 
 .navbar a:hover {
-  columns: #f1356d;
+  background-color: #f1356d;
 }
 
 .content {
   max-width: 600px;
   margin: 40px auto;
   padding: 20px;
+}
+
+/* blogs previews */
+
+.blog-previews {
+  padding: 10px, 16px;
+  margin: 20px 0;
+  border-bottom: 1px solid #f1356d;
+}
+
+.blog-previews:hover {
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.blog-previews h2 {
+  font-size: 20px;
+  color: #f1356d;
+  margin-bottom: 8px;
 }
