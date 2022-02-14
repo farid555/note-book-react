@@ -6,7 +6,7 @@ const Home = () => {
     {
       title: "THE JOURNEY OF THE MARMABILL",
       body: "For those spending time at home, looking for a cozy adventure or bedtime story for kids, we offer this imaginative rhyming picture book, read by the author, Daniel Errico.",
-      author: "Daniel Errico",
+      author: "Aaniel Errico",
       id: 1,
     },
     {
@@ -28,9 +28,14 @@ const Home = () => {
       id: 4,
     },
   ]);
+
+  const handleDelete = (id) => {
+    const newBlogs = blogs.filter((blog) => blog.id !== id);
+    setBlog(newBlogs);
+  };
   return (
     <div>
-      <BlogList blogs={blogs} />
+      <BlogList blogs={blogs} title="All blogs" handleDelete={handleDelete} />
     </div>
   );
 };
