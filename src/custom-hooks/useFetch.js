@@ -6,8 +6,9 @@ const useFetch = (url) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    const abortCont = new AbortController(); //Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application
     setTimeout(() => {
-      fetch(url)
+      fetch(url, { signal: abortCont.signal })
         .then((res) => {
           if (!res.ok) {
             throw Error("Could not fetch the dat from that resource...");
@@ -22,10 +23,15 @@ const useFetch = (url) => {
           console.log(data);
         })
         .catch((err) => {
-          setError(err.message);
-          setIspending(false);
+          if (err.name === "AbortError") {
+            console.log("fetch aborted");
+          } else {
+            setError(err.message);
+            setIspending(false);
+          }
         });
     }, 1000);
+    return () => abortCont.abort();
   }, [url]);
   return { data, error, ispending };
 };
