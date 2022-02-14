@@ -1,34 +1,13 @@
 import BlogList from "./BlogList";
-import { useState, useEffect } from "react";
+import useFetch from "../custom-hooks/useFetch";
 
 const Home = () => {
-  const [blogs, setBlogs] = useState(null);
-  const [ispending, setIspending] = useState(true);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => {
-      fetch("http://localhost:8000/blogs")
-        .then((res) => {
-          if (!res.ok) {
-            throw Error("Could not fetch the dat from that resource...");
-          } else {
-            return res.json();
-          }
-        })
-        .then((data) => {
-          setBlogs(data);
-          setIspending(false);
-          setError(null);
-        })
-        .catch((err) => {
-          setError(err.message);
-          setIspending(false);
-        });
-    }, 1000);
-
-    console.log("test");
-  }, []);
+  const {
+    data: blogs,
+    ispending,
+    error,
+  } = useFetch("http://localhost:8000/blogs");
+  console.log(blogs);
 
   return (
     <div className="home">
